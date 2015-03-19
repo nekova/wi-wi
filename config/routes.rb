@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :user_sessions
-  resources :users
+  resources :users do
+    member do
+      get :activate
+    end
+  end
 
   resources :posts do
     resources :comments
