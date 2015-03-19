@@ -13,6 +13,9 @@ gem "slim-rails"
 gem 'haml2slim'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+gem 'did_you_mean', group: [:development, :test]
+gem "bullet", :group => "development"
+
 gem 'simple_form'
 
 gem 'sorcery'
