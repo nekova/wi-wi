@@ -1,23 +1,23 @@
 = form_for(@post) do |f|
   - if @post.errors.any?
     #error_explanation
-      %h2
+      h2
         = pluralize(@post.errors.count, "error")
-        prohibited this post from being saved:
-      %ul
+        | prohibited this post from being saved:
+      ul
         - @post.errors.full_messages.each do |message|
-          %li= message
+          li= message
   .field
     = f.label :title
-    %br/
+    br/
     = f.text_field :title
   .field
     = f.label :url
-    %br/
+    br/
     = f.text_field :url
   .field
     = f.label :content
-    %br/
+    br/
     = f.text_area :content
   .actions
     = f.submit

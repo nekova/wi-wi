@@ -1,0 +1,16 @@
+p#notice= notice
+- @posts.each do |post|
+  div.post
+    h2.title
+      strong
+        = link_to post.title, post
+    ul
+      li.time
+        = time_ago_in_words(post.updated_at)
+        |  ago
+      li |
+      li comment_count
+      li |
+      li share
+br/
+= link_to 'New Post', new_post_path
