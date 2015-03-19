@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  root 'posts#index'
   resources :user_sessions
   resources :users do
     member do
       get :activate
     end
   end
+
+  resources :password_resets
+
 
   resources :posts do
     resources :comments
