@@ -27,6 +27,17 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.bugsnag = true
+    Bullet.airbrake = true
+    Bullet.add_footer = true
+  end
+
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
