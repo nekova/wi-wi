@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
@@ -27,7 +29,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to post_path(@post.id), notice: 'Comment was successfully created.' }
+        format.html { redirect_to post_path(params[:post_id]), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -65,8 +67,18 @@ class CommentsController < ApplicationController
       @post = Post.find(params[:post_id])
     end
 
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:content).merge({post_id: params[:post_id]})
+    end
+
+    def require_permission
+      if current_user != Comment.find(params[:id]).user
+        redirect_to @post, notice: "You don't have permission :("
+      end
     end
 end

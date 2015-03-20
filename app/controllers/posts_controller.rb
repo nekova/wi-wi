@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -72,5 +73,11 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :url, :content)
+    end
+
+    def require_permission
+      if current_user != @post.user
+        redirect_to @post, notice: "You don't have permission :("
+      end
     end
 end

@@ -1,12 +1,7 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create, :activate]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_login, only: [:index, :new, :create, :activate]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /users/1
   # GET /users/1.json
@@ -29,7 +24,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(:users, notice: 'User was successfully created') }
+        format.html { redirect_to(root_path, notice: 'User was successfully created') }
         # format.html { redirect_to @user, notice: 'User was successfully created.' }
         # format.json { render :show, status: :created, location: @user }
       else
@@ -81,5 +76,11 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :name)
+    end
+
+    def require_permission
+      if current_user != @user
+        redirect_to @user, notice: "You don't have permission :("
+      end
     end
 end

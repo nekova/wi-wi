@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'posts#index'
-  resources :user_sessions
-  resources :users do
+  resources :user_sessions, only: [:new, :create, :destroy]
+  resources :users, except: [:index] do
     member do
       get :activate
     end
