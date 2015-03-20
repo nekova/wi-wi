@@ -14,11 +14,8 @@ gem 'haml2slim'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 gem "bullet", :group => "development"
-
-
-
+gem 'counter_culture', '~> 0.1.23'
 gem 'simple_form'
-
 gem 'sorcery'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

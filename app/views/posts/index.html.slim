@@ -9,7 +9,9 @@ p#notice= notice
         = time_ago_in_words(post.updated_at)
         |  ago
       li |
-      li comment_count
+      li
+        = post.comments_count
+        |  comments
       li |
       li share
 br/
