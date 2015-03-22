@@ -1,37 +1,44 @@
-p#notice= notice
-div.post
-  h2.title
-    strong
-      = link_to "#{@post.title} - #{@post.url}" , @post.url, :target => "_new"
-  .content
-    = @post.content
-
-  ul
-    li.time
-      = time_ago_in_words(@post.updated_at)
-      |  ago
-    li |
-    li comment_count
-    li |
-    li share
+div.content
+  div.post
+    i.thumbnail class="fa fa-picture-o fa-3x"
+    .entry
+      p.title
+        strong
+          = link_to "#{@post.title} - #{@post.url}", @post.url, :target => "_new"
+      ul
+        li.time
+          i> class="fa fa-clock-o"
+          = time_ago_in_words(@post.updated_at)
+          |  ago
+        li |
+        li
+          i> class="fa fa-comment-o"
+          = @post.comments_count
+          |  comments
+        li |
+        li
+          i> class="fa fa-twitter"  share
+    .post-content
+      = @post.content
 
 /= link_to 'Edit', edit_post_path(@post)
 /|
 /= link_to 'Back', posts_path
 
 - @comments.each do |comment|
-  ul
-    li.name
-      = comment.user.name
-    li.time
-      = time_ago_in_words(comment.updated_at)
-      |  ago
-    li |
-    li share
-  .content
-    strong
-      = comment.content
-
+  .comment-wrapper
+    a.comment-avatar href="/"
+      i class="fa fa-cube fa-3x"
+    .timeline-comment
+      .timeline-comment-header
+        .timeline-comment-header-text
+          strong>
+            = comment.user.name
+          | commented
+          =<> time_ago_in_words(comment.created_at)
+          | ago
+      .timeline-content
+        = comment.content
 - if current_user
   = simple_form_for([@post, current_user.comments.build]) do |f|
     = f.input :content, label: false, required: true

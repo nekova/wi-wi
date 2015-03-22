@@ -16,6 +16,7 @@ gem "bullet", :group => "development"
 gem 'counter_culture', '~> 0.1.23'
 gem 'simple_form'
 gem 'sorcery'
+gem "font-awesome-rails"
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

@@ -2,6 +2,142 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .content {
-  border: 1px solid grey;
+  border: 1px solid #eee;
+  margin-bottom: 30px;
+}
+
+.post-content {
+  padding: 15px;
+}
+
+.body {
+  border: 1px solid #eee;
   padding: 5px;
+}
+
+.timeline-post {
+  border-bottom: 1px solid #eee;
+}
+
+.post {
+  padding: 10px 10px 0 0;
+  ul {
+    padding-left: 60px;
+  }
+}
+
+//
+// .timeline-post {
+//   padding: 10px 10px 10px 0;
+//   height: 80px;
+//   ul {
+//     padding-left: 60px;
+//   }
+// }
+
+.comments {
+
+}
+
+.comment-wrapper {
+  position: relative;
+  padding-left: 64px;
+  .comment-avatar {
+    float: left;
+    margin-left: -64px;
+  }
+}
+
+.timeline-comment {
+  position: relative;
+  border: 1px solid #eee;
+  background-color: #ddd;
+  // border-radius: 2px;
+  border-color: black;
+  margin-bottom: 5px;
+
+  &:before, &:after{
+    position: absolute;
+    top: 11px;
+    left: -16px;
+    right: 100%;
+    width: 0;
+    height: 0;
+    display: block;
+    content: " ";
+    border-color: transparent;
+    border-style: solid solid outset;
+    pointer-events: none;
+  }
+  &:after {
+    border-right-color: #f2f8fa;
+    border-width: 7px;
+    margin-top: 1px;
+    margin-left: 2px;
+  }
+  &:before {
+    border-right-color: black;
+    border-width: 8px;
+  }
+
+  .timeline-comment-header {
+    height: 38px;
+    background-color: #f2f8fa;
+    border-bottom-color: #e1edf1;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid #eee;
+    .timeline-comment-header-text {
+      padding-top: 10px;
+      padding-bottom:10px;
+    }
+  }
+  .timeline-content {
+    background-color: #fff;
+    padding: 15px;
+  }
+}
+
+.thumbnail {
+  float: left;
+  margin: 0 20px 0 0;
+}
+
+p.title {
+  font-size: 18px;
+  padding: 10px 0 0 0;
+  margin: 0;
+}
+
+div.entry {
+  margin-left: 3px;
+}
+
+a.redirect {
+  color: #858585;
+}
+
+ul.comment-header {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.balloon {
+  position: relative;
+  width: 200px;
+  height: 30px;
+  background-color: #ccc;
+  text-align: center;
+}
+
+.balloon .triangle {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #ccc;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
 }

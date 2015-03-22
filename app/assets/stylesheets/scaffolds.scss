@@ -30,10 +30,20 @@ ul.header-nav {
   height: 40px;
 }
 
+.brand-logo {
+  float: left;
+  margin-right: 10px;
+}
+
 .brand-title {
   float: left;
   h1 {
     margin-top: 10px;
+  }
+  &:hover {
+    // text-decoration: none;
+    background-color: transparent;
+    color: #000;
   }
 }
 
