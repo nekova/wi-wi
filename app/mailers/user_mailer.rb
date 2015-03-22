@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   #
   def activation_needed_email(user)
     @user = user
-    @url  = "http://127.0.0.1:3000/users/#{user.activation_token}/activate"
+    @url  = "wi-wi.herokuapp.com/users/#{user.activation_token}/activate"
     mail(to: user.email, subject: "Welcome")
   end
 
@@ -18,7 +18,7 @@ class UserMailer < ApplicationMailer
   #
   def activation_success_email(user)
     @user = user
-    @url = "http://127.0.0.1:3000/login"
+    @url = "wi-wi.herokuapp.com/login"
     mail(to: user.email, subject: "Your account is now activated!")
   end
 
