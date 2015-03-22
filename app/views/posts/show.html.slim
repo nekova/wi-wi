@@ -27,8 +27,8 @@ div.content
 
 - @comments.each do |comment|
   .comment-wrapper
-    a.comment-avatar href="/"
-      i class="fa fa-cube fa-3x"
+    a.comment-avatar href="/users/#{comment.user.id}"
+      = gravatar_for comment.user
     .timeline-comment
       .timeline-comment-header
         .timeline-comment-header-text
