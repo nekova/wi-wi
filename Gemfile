@@ -22,6 +22,8 @@ gem 'counter_culture', '~> 0.1.23'
 gem 'simple_form'
 gem 'sorcery'
 gem "font-awesome-rails"
+gem 'email_validator', require: 'email_validator/strict'
+gem 'validate_url'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -46,12 +48,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'did_you_mean'
   gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'ffaker'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :test do
+  gem "shoulda-matchers", "~> 2.7.0", require: false
 end
