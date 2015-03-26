@@ -68,6 +68,7 @@ GEM
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
       after_commit_action (~> 1.0.0)
+    database_rewinder (0.5.1)
     debug_inspector (0.0.2)
     did_you_mean (0.9.6)
       interception
@@ -250,6 +251,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   counter_culture (~> 0.1.23)
+  database_rewinder
   did_you_mean
   email_validator
   factory_girl_rails
