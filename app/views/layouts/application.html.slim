@@ -15,14 +15,19 @@ html
             h1. wiwi
         ul.header-nav
           - if current_user
-            li
+            li.header-nav
               = link_to "Profile", edit_user_path(current_user.id)
-            li
+            li.header-nav
               = link_to "Logout", :logout, method: :post
           - else
-            li
-              = link_to "Register", new_user_path
-            li
-              = link_to "Log in", :login
+            li.header-nav
+              = link_to "Register", new_user_path, class: 'btn btn-default'
+            li.header-nav
+              = link_to "Log in", :login, class: 'btn btn-default'
+          li.header-nav
+            a href="/posts/new"
+              i.header-icon.fa.fa-pencil
     .container
+      -flash.each do |key, value|
+        = content_tag(:div, value, class: "#{key}")
       = yield

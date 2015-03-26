@@ -9,8 +9,8 @@ class UserSessionsController < ApplicationController
     if @user = login(params[:email], params[:password])
       redirect_back_or_to(root_path, notice: 'Login successful')
     else
-      flash.now[:alert] = 'Login failed'
-      render action: 'new'
+      flash[:notice] = "Your account is not activate! Plese wait and check email."
+      redirect_to :login
     end
   end
 

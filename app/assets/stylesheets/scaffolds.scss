@@ -22,8 +22,16 @@ header {
 ul.header-nav {
   display: block;
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 0;
   float: right;
+  line-height: 10px;
+  height: 40px;
+  li.header-nav {
+    margin-right: 10px;
+  }
+  i.header-icon {
+    font-size: 30px;
+  }
 }
 
 .brand {

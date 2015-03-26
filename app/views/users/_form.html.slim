@@ -6,16 +6,25 @@
         - @user.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions = f.submit
+  .form-group.input-group
+    span.input-group-addon
+      i.fa.fa-envelope-o.fa-fw
+      = f.label :email
+    = f.text_field :email, class: 'form-control', placeholder: 'email'
+  .form-group.input-group
+    span.input-group-addon
+      i.fa.fa-key.fa-fw
+      = f.label :password
+    = f.password_field :password, class: 'form-control', placeholder: 'password'
+  .form-group.input-group
+    span.input-group-addon
+      i.fa.fa-key.fa-fw
+      = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: 'form-control', placeholder: 'password confirmation'
+  .form-group.input-group
+    span.input-group-addon
+      i.fa.fa-user.fa-fw
+      = f.label 'username'
+    = f.text_field :name, class: 'form-control', placeholder: 'username'
+  .actions
+    = f.submit "Create", class: 'btn btn-primary'
