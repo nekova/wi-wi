@@ -16,7 +16,7 @@ html
         ul.header-nav
           - if current_user
             li.header-nav
-              = link_to "Profile", edit_user_path(current_user.id)
+              = link_to "Profile", edit_user_path(current_user)
             li.header-nav
               = link_to "Logout", :logout, method: :post
           - else

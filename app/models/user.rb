@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
+  include FriendlyId
   authenticates_with_sorcery!
+  friendly_id :name
   has_many :comments
   has_many :posts
 
