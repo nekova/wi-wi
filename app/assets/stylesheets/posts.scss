@@ -95,6 +95,9 @@
     .timeline-comment-header-text {
       padding-top: 10px;
       padding-bottom:10px;
+      span.timeline-comment-header-action {
+        float: right;
+      }
     }
   }
   .timeline-content {

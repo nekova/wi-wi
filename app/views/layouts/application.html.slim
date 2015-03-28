@@ -9,8 +9,8 @@ html
   body
     header
       .container
-        a.brand-title href="/"
-          i.brand-logo class="fa fa-wifi fa-3x"
+        = link_to root_path, class: 'brand-title' do
+          i.brand-logo.fa.fa-wifi.fa-3x
           div.brand-title
             h1. wiwi
         ul.header-nav
@@ -25,7 +25,7 @@ html
             li.header-nav
               = link_to "Log in", :login, class: 'btn btn-default'
           li.header-nav
-            a href="/posts/new"
+            = link_to new_post_path do
               i.header-icon.fa.fa-pencil
     .container
       -flash.each do |key, value|
