@@ -4,7 +4,7 @@ div.content
     .entry
       p.title
         strong
-          = link_to "#{@post.title} - #{get_host(@post.url)}", @post.url, :target => "_new"
+          = link_to "#{truncate(@post.title, length: 40)} - #{get_host(@post.url)}", @post.url, :target => "_new"
       ul
         li.time
           i> class="fa fa-clock-o"
