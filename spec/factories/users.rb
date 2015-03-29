@@ -1,8 +1,20 @@
 FactoryGirl.define do
   factory :user do
-    name { generate :name }
-    email { generate :email }
-    password { generate :password }
+    name
+    email
+    password
     password_confirmation { password }
+  end
+
+  sequence :name do
+    FFaker::Name.last_name.downcase
+  end
+
+  sequence :email do
+    FFaker::Internet.email
+  end
+
+  sequence :password do
+    FFaker::Internet.password
   end
 end

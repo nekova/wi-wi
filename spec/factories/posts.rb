@@ -1,7 +1,11 @@
 FactoryGirl.define do
   factory :post do
     title 'title'
-    url 'https://wi-wi.herokuapp.com'
+    url
     content 'hello\n world'
+  end
+
+  sequence :url do
+    FFaker::Internet.uri("http")
   end
 end
