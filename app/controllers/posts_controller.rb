@@ -6,13 +6,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order(:created_at)
+    @posts = Post.order("created_at DESC")
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @comments = @post.comments.includes(:user).order(:created_at)
+    @comments = @post.comments.includes(:user)
   end
 
   # GET /posts/new
