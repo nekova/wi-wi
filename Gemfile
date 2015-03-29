@@ -26,6 +26,7 @@ gem "font-awesome-rails"
 gem 'email_validator', require: 'email_validator/strict'
 gem 'validate_url'
 gem 'friendly_id', '~> 5.1.0'
+gem 'redcarpet'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
