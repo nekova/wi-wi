@@ -16,9 +16,18 @@ html
         ul.header-nav
           - if current_user
             li.header-nav
-              = link_to "Profile", edit_user_path(current_user)
-            li.header-nav
-              = link_to "Logout", :logout, method: :post
+              div.dropdown
+                div.dropdown-toggle id="drop-set" data-toggle="dropdown" aria-expanded="true"
+                  = gravatar_for current_user
+                ul.dropdown-menu role="menu" aria-labelledby="drop-set"
+                  li role="presentation"
+                    = link_to "Profile", user_path(current_user), role: "menuitem", tabindex: "-1"
+                  li role="presentation"
+                    a role="menuitem" tabindex="-1" href="/settings" Settings
+                  li role="presentation"
+                    a role="menuitem" tabindex="-1" href="/help" Help
+                  li role="presentation"
+                    = link_to "logout", :logout, method: :post, role: "menuitem", tabindex: "-1"
           - else
             li.header-nav
               = link_to "Register", new_user_path, class: 'btn btn-default'

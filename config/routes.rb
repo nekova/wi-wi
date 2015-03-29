@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  # get 'profile' => 'users#edit', as: :profile
+
   resources :password_resets
 
 
