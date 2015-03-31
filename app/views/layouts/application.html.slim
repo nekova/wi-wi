@@ -15,27 +15,27 @@ html
             h1. wiwi
         ul.header-nav
           - if current_user
-            li.header-nav
+            li.header-list
               div.dropdown
                 div.dropdown-toggle id="drop-set" data-toggle="dropdown" aria-expanded="true"
                   = gravatar_for current_user
                 ul.dropdown-menu role="menu" aria-labelledby="drop-set"
-                  li role="presentation"
+                  li.dropdown-action role="presentation"
                     = link_to "Profile", user_path(current_user), role: "menuitem", tabindex: "-1"
-                  li role="presentation"
+                  li.dropdown-action role="presentation"
                     a role="menuitem" tabindex="-1" href="/settings" Settings
-                  li role="presentation"
+                  li.dropdown-action role="presentation"
                     a role="menuitem" tabindex="-1" href="/help" Help
-                  li role="presentation"
+                  li.dropdown-action role="presentation"
                     = link_to "logout", :logout, method: :post, role: "menuitem", tabindex: "-1"
           - else
-            li.header-nav
+            li.header-list
               = link_to "Register", new_user_path, class: 'btn btn-default'
-            li.header-nav
+            li.header-list
               = link_to "Log in", :login, class: 'btn btn-default'
-          li.header-nav
+          li.navbar-new-post
             = link_to new_post_path do
-              i.header-icon.fa.fa-pencil
+              i.fa.fa-pencil.fa-2x
     .container
       -flash.each do |key, value|
         = content_tag(:div, value, class: "#{key}")

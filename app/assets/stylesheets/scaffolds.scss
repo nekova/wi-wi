@@ -7,18 +7,26 @@ body {
   line-height: 18px;
 }
 
-div.dropdown {
+.dropdown {
   img {
     height: 40px;
     width: 40px;
 
   }
-  ul.dropdown-menu {
-    li {
+  .dropdown-menu {
+    .dropdown-action {
       display: block;
     }
   }
 }
+
+.navbar-new-post {
+  top: 20px;
+  float: right;
+  width: 40px;
+  height: 40px;
+}
+
 header {
   background: #F0F0F0;
   padding-top: 15px;
@@ -32,20 +40,21 @@ header {
   z-index: 100;
 }
 
-ul.header-nav {
+.header-nav {
   display: block;
   font-size: 18px;
   margin-top: 0;
   float: right;
   line-height: 10px;
   height: 40px;
-  li.header-nav {
-    margin-right: 10px;
-  }
-  i.header-icon {
-    font-size: 30px;
-  }
 }
+.header-list {
+  margin-right: 10px;
+}
+  i.header-icon {
+    font-size: 20px;
+  }
+
 
 .brand {
   display: inline-block;
