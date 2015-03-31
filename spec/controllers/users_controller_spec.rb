@@ -24,16 +24,24 @@ describe UsersController, :type => :controller do
   end
 
   describe "visitor" do
+    #something wrong
     describe "GET #show" do
-      it "shold get show" do
+      it "shold reject to show" do
         get :show, id: user
         expect(response).to redirect_to(login_path)
       end
     end
 
     describe "GET #edit" do
-      it "should get edit" do
+      it "should reject to edit" do
           get :edit, id: user
+          expect(response).to redirect_to(login_path)
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "should reject to destroy" do
+          delete :destroy, id: user
           expect(response).to redirect_to(login_path)
       end
     end
