@@ -3,6 +3,7 @@ FactoryGirl.define do
     title 'title'
     url
     content 'hello\n world'
+    association :user
   end
 
   sequence :url do
