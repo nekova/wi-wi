@@ -15,9 +15,15 @@ div.content
           i> class="fa fa-comment-o"
           = @post.comments_count
           |  comments
+        - if @post.user == current_user
         li |
         li
-          i> class="fa fa-twitter"  share
+          = link_to edit_post_path do
+            i> class="fa fa-pencil-square-o"  edit
+        li |
+        li
+          = link_to post_path, method: :delete do
+            i> class="fa fa-trash-o"  delete
     .post-content
       = markdown(@post.content)
 
