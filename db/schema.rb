@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20150320164247) do
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "post_id"
-    t.integer  "user_id"
+    t.text     "content", null: false
+    t.integer  "post_id", null: false
+    t.integer  "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20150320164247) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.string   "url"
-    t.text     "content"
+    t.integer  "user_id", null: false
+    t.string   "title", null: false
+    t.string   "url", null: false
+    t.text     "content", null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "comments_count", default: 0, null: false
@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 20150320164247) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name", null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "email"
-    t.string   "crypted_password"
-    t.string   "salt"
+    t.string   "email", null: false
+    t.string   "crypted_password", null: false
+    t.string   "salt", null: false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"
