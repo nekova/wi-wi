@@ -53,6 +53,12 @@ Rails.application.configure do
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  Wiwi::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[Whatever] ",
+    :sender_address => %{"notifier" <nekova07@gmail.com>},
+    :exception_recipients => %w{nekova07@gmail.com}
+  }
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
