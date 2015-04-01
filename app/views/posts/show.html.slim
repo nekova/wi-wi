@@ -28,7 +28,7 @@ div.content
       = markdown(@post.content)
 
 - @comments.each do |comment|
-  .comment-wrapper id="comment-#{comment.id}"
+  .comment-wrapper.comments id="comment-#{comment.id}"
     a.comment-avatar href="/users/#{comment.user.name}"
       = gravatar_for comment.user
     .timeline-comment
