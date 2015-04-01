@@ -27,12 +27,8 @@ div.content
     .post-content
       = markdown(@post.content)
 
-/= link_to 'Edit', edit_post_path(@post)
-/|
-/= link_to 'Back', posts_path
-
 - @comments.each do |comment|
-  .comment-wrapper
+  .comment-wrapper id="comment-#{comment.id}"
     a.comment-avatar href="/users/#{comment.user.name}"
       = gravatar_for comment.user
     .timeline-comment
