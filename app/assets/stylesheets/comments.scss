@@ -5,7 +5,12 @@
   float: right;
 }
 
-.comments {
+.anchor {
+  // display: block; position: relative;
+  // top: -250px;
+  // top: -250px;
+  display: block;
   margin-top: -80px;
   padding-top: 80px;
+  visibility: hidden;
 }
