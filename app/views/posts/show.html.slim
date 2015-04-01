@@ -27,15 +27,15 @@ div.content
     .post-content
       = markdown(@post.content)
 
-- @comments.each do |comment|
-  span.anchor id="comment-#{comment.id}"
+- @comments.each.with_index(1) do |comment, index|
+  span.anchor id="comment-#{index}"
   .comment-wrapper
     a.comment-avatar href="/users/#{comment.user.name}"
       = gravatar_for comment.user
     .timeline-comment
       .timeline-comment-header
         .timeline-comment-header-text
-          | ##{comment.id}
+          | ##{index}
           strong<>
             = comment.user.name
           | commented
