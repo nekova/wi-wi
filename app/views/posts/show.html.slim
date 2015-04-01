@@ -22,7 +22,7 @@ div.content
             i> class="fa fa-pencil-square-o"  edit
         li |
         li
-          = link_to post_path, method: :delete do
+          = link_to post_path, method: :delete, data: { confirm: "Are you sure?" } do
             i> class="fa fa-trash-o"  delete
     .post-content
       = markdown(@post.content)
