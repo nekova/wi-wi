@@ -66,14 +66,18 @@ class PostsController < ApplicationController
   end
 
   def upvote
-    @post.upvote_by(current_user)
-    User.increment_counter(:reputation, @user.id)
+    if @post.upvotable_by?(current_user)
+      @post.upvote_by(current_user)
+      User.increment_counter(:reputation, @user.id)
+    end
     redirect_to @post
   end
 
   def downvote
-    @post.downvote_by(current_user)
-    User.decrement_counter(:reputation, @user.id)
+    if @post.downvotable_by?(current_user)
+      @post.downvote_by(current_user)
+      User.decrement_counter(:reputation, @user.id)
+    end
     redirect_to @post
   end
 
