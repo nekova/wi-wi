@@ -1,3 +1,14 @@
+ul
+  li<>
+    = link_to 'new', "?sort=new"
+  li<> |
+  li<>
+    = link_to 'hot', "?sort=hot"
+  li<> |
+  li<>
+    = link_to 'best', "?sort=best"
+
+
 - @posts.each do |post|
   div.post.timeline-post
     i.thumbnail class="fa fa-picture-o fa-3x"

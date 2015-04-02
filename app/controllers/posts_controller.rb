@@ -7,7 +7,17 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order("updated_at DESC")
+    sort = case params[:sort]
+    when "new"
+      "created_at DESC"
+    when "hot"
+      "updated_at DESC"
+    when "best"
+      "cached_votes_score DESC"
+    else
+      "updated_at DESC"
+    end
+    @posts = Post.order(sort)
   end
 
   # GET /posts/1
