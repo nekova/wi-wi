@@ -11,29 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402164146) do
+ActiveRecord::Schema.define(version: 20150402223454) do
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content",    null: false
-    t.integer  "post_id",    null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "content",                        null: false
+    t.integer  "post_id",                        null: false
+    t.integer  "user_id",                        null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "cached_votes_score", default: 0
   end
 
+  add_index "comments", ["cached_votes_score"], name: "index_comments_on_cached_votes_score"
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.string   "title",                      null: false
-    t.string   "url",                        null: false
-    t.text     "content",                    null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "comments_count", default: 0, null: false
+    t.integer  "user_id",                        null: false
+    t.string   "title",                          null: false
+    t.string   "url",                            null: false
+    t.text     "content",                        null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "comments_count",     default: 0, null: false
+    t.integer  "cached_votes_score", default: 0
   end
 
+  add_index "posts", ["cached_votes_score"], name: "index_posts_on_cached_votes_score"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
