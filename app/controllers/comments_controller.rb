@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
@@ -61,6 +61,17 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def upvote
+    @comment.upvote_by(current_user)
+    redirect_to @comment.post
+  end
+
+  def downvote
+    @comment.downvote_by(current_user)
+    redirect_to @comment.post
+  end
+
 
   private
     def set_post
