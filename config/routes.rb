@@ -13,8 +13,15 @@ Rails.application.routes.draw do
 
 
   resources :posts do
+    member do
+      put 'upvote' => 'posts#upvote', as: :upvote
+      put 'downvote' => 'posts#downvote', as: :downvote
+    end
     resources :comments
   end
+
+  put 'comments/:id/upvote' => 'comments#upvote', as: :upvote_comment
+  put 'comments/:id/downvote' => 'comments#downvote', as: :downvote_comment
 
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout

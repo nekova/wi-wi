@@ -3,5 +3,8 @@ p#notice = notice
 p
   strong Name:
   = @user.name
+p
+  strong Reputation:
+  = @user.reputation
 
 = link_to 'Edit', edit_user_path(@user)

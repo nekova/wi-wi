@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:upvote, :downvote]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /comments
@@ -62,6 +63,27 @@ class CommentsController < ApplicationController
     end
   end
 
+  def upvote
+    if @comment.upvotable_by?(current_user)
+      @comment.upvote_by(current_user)
+      User.increment_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
+    end
+    redirect_to @comment.post
+  end
+
+  def downvote
+    if @comment.downvotable_by?(current_user)
+      @comment.downvote_by(current_user)
+      User.decrement_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
+    end
+    redirect_to @comment.post
+  end
+
+
   private
     def set_post
       @post = Post.find(params[:post_id])
@@ -69,6 +91,10 @@ class CommentsController < ApplicationController
 
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    def set_user
+      @user = @comment.user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

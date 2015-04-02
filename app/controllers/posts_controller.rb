@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :set_user, only: [:upvote, :downvote]
   skip_before_action :require_login, only: [:index, :show]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
@@ -64,10 +65,34 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    if @post.upvotable_by?(current_user)
+      @post.upvote_by(current_user)
+      User.increment_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
+    end
+    redirect_to @post
+  end
+
+  def downvote
+    if @post.downvotable_by?(current_user)
+      @post.downvote_by(current_user)
+      User.decrement_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
+    end
+    redirect_to @post
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def set_user
+      @user = @post.user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

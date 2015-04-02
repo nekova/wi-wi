@@ -7,7 +7,7 @@ FactoryGirl.define do
   end
 
   sequence :name do
-    rand(1..100).to_s + FFaker::Name.last_name.downcase + rand(1..100).to_s
+    (0...16).map { ('a'..'z').to_a[rand(26)] }.join
   end
 
   sequence :email do

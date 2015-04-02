@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320164247) do
+ActiveRecord::Schema.define(version: 20150402164146) do
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content", null: false
-    t.integer  "post_id", null: false
-    t.integer  "user_id", null: false
+    t.text     "content",    null: false
+    t.integer  "post_id",    null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20150320164247) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "user_id", null: false
-    t.string   "title", null: false
-    t.string   "url", null: false
-    t.text     "content", null: false
+    t.integer  "user_id",                    null: false
+    t.string   "title",                      null: false
+    t.string   "url",                        null: false
+    t.text     "content",                    null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "comments_count", default: 0, null: false
@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 20150320164247) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name", null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "email", null: false
-    t.string   "crypted_password", null: false
-    t.string   "salt", null: false
+    t.string   "name",                                        null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "email",                                       null: false
+    t.string   "crypted_password",                            null: false
+    t.string   "salt",                                        null: false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"
@@ -51,11 +51,28 @@ ActiveRecord::Schema.define(version: 20150320164247) do
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
+    t.integer  "reputation",                      default: 0
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
+  add_index "users", ["reputation"], name: "index_users_on_reputation"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

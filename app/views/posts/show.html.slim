@@ -12,6 +12,9 @@ div.content
           |  ago
         li |
         li
+          = @post.score
+        li |
+        li
           i> class="fa fa-comment-o"
           = @post.comments_count
           |  comments
@@ -19,11 +22,19 @@ div.content
         li |
         li
           = link_to edit_post_path do
-            i> class="fa fa-pencil-square-o"  edit
+            i> class="fa fa-pencil-square-o" edit
         li |
         li
           = link_to post_path, method: :delete, data: { confirm: "Are you sure?" } do
-            i> class="fa fa-trash-o"  delete
+            i> class="fa fa-trash-o" delete
+        li> |
+        li
+          = link_to upvote_post_path(@post), method: :put do
+            i> class="fa fa-level-up" upvote
+        li> |
+        li
+          = link_to downvote_post_path(@post), method: :put do
+            i> class="fa fa-level-down" downvote
     .post-content
       = markdown(@post.content)
 
@@ -41,9 +52,15 @@ div.content
           | commented
           =<> time_ago_in_words(comment.created_at)
           | ago
+          =<> comment.score
           span.timeline-comment-header-action
-            = link_to edit_post_comment_path(@post, comment) do
-              i.header-icon.fa.fa-pencil
+            =<> link_to upvote_comment_path(comment), method: :put do
+              i<> class="fa fa-level-up" upvote
+            =<> link_to downvote_comment_path(comment), method: :put do
+              i<> class="fa fa-level-down" downvote
+            - if comment.user == current_user
+              =<> link_to edit_post_comment_path(@post, comment) do
+                i.header-icon.fa.fa-pencil
       .timeline-content
         = markdown(comment.content)
 - if current_user
