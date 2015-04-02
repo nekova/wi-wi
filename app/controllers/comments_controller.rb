@@ -67,6 +67,8 @@ class CommentsController < ApplicationController
     if @comment.upvotable_by?(current_user)
       @comment.upvote_by(current_user)
       User.increment_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
     end
     redirect_to @comment.post
   end
@@ -75,6 +77,8 @@ class CommentsController < ApplicationController
     if @comment.downvotable_by?(current_user)
       @comment.downvote_by(current_user)
       User.decrement_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
     end
     redirect_to @comment.post
   end

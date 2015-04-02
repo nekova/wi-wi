@@ -69,6 +69,8 @@ class PostsController < ApplicationController
     if @post.upvotable_by?(current_user)
       @post.upvote_by(current_user)
       User.increment_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
     end
     redirect_to @post
   end
@@ -77,6 +79,8 @@ class PostsController < ApplicationController
     if @post.downvotable_by?(current_user)
       @post.downvote_by(current_user)
       User.decrement_counter(:reputation, @user.id)
+    else
+      flash[:notice] = "You can't vote"
     end
     redirect_to @post
   end
