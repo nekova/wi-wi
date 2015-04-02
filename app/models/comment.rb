@@ -1,4 +1,6 @@
 class Comment < ActiveRecord::Base
+  include Vote
+
   belongs_to :user
   belongs_to :post, touch: true
   counter_culture :post

@@ -12,6 +12,9 @@ div.content
           |  ago
         li |
         li
+          = @post.score
+        li |
+        li
           i> class="fa fa-comment-o"
           = @post.comments_count
           |  comments
@@ -49,6 +52,7 @@ div.content
           | commented
           =<> time_ago_in_words(comment.created_at)
           | ago
+          =<> comment.score
           span.timeline-comment-header-action
             =<> link_to upvote_comment_path(comment), method: :put do
               i<> class="fa fa-level-up" upvote
