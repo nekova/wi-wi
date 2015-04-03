@@ -29,19 +29,22 @@ describe PostsController, :type => :controller do
 
     describe "vote" do
       let(:anypost) { create(:post) }
+      before(:each) do
+        request.env["HTTP_REFERER"] = "back"
+      end
 
       describe "PUT #upvote" do
         context "when default vote" do
           it "should accept to vote" do
             put :upvote, id: anypost
-            expect(response).to redirect_to(anypost)
+            expect(response).to redirect_to("back")
           end
         end
 
         context "when self-voting" do
           it "should reject to vote" do
             put :upvote, id: post
-            expect(response).to redirect_to(post)
+            expect(response).to redirect_to("back")
             expect(flash[:notice]).to eq("You can't vote")
           end
         end
@@ -60,14 +63,14 @@ describe PostsController, :type => :controller do
         context "when default vote" do
           it "should accept to vote" do
             put :upvote, id: anypost
-            expect(response).to redirect_to(anypost)
+            expect(response).to redirect_to("back")
           end
         end
 
         context "when self-voting" do
           it "should reject to vote" do
             put :upvote, id: post
-            expect(response).to redirect_to(post)
+            expect(response).to redirect_to("back")
             expect(flash[:notice]).to eq("You can't vote")
           end
         end

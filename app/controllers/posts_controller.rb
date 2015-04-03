@@ -82,7 +82,7 @@ class PostsController < ApplicationController
     else
       flash[:notice] = "You can't vote"
     end
-    redirect_to @post
+    redirect_to :back
   end
 
   def downvote
@@ -92,7 +92,7 @@ class PostsController < ApplicationController
     else
       flash[:notice] = "You can't vote"
     end
-    redirect_to @post
+    redirect_to :back
   end
 
   private
