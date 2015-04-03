@@ -8,23 +8,33 @@ ul
   li<>
     = link_to 'best', "?sort=best"
 
-
 - @posts.each do |post|
-  div.post.timeline-post
-    i.thumbnail class="fa fa-picture-o fa-3x"
-    .entry
-      p.title
-        strong
-          = link_to post.title, (post)
-      ul
-        li.time
-          i> class="fa fa-clock-o"
-          = time_ago_in_words(post.created_at)
-          |  ago
-        li |
-        li
-          i> class="fa fa-comment-o"
-          = post.comments_count
-          |  comments
+  .item
+    .item__reputation
+      .upvote
+        = link_to upvote_post_path(post), method: :put do
+          i> class="fa fa-level-up"
+      .score
+        = post.cached_votes_score
+      .downvote
+        = link_to downvote_post_path(post), method: :put do
+          i> class="fa fa-level-down"
+    .item__thumbnail
+      = image_tag "space.jpg", class: "thumbnail"
+    .item__post
+      .item__title
+        = link_to truncate(post.title, length: 90), (post)
+      ul.flat-list
+        li.item__list
+          i class="fa fa-clock-o"
+          =<> time_ago_in_words(post.created_at)
+          | ago
+        li.item__list
+          i class="fa fa-comment-o"
+          =<> post.comments_count
+          | comments
+        li.item__list
+          i<> class="fa fa-twitter"
+          | share
 br/
 = link_to 'New Post', new_post_path
