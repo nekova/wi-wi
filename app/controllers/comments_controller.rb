@@ -64,8 +64,7 @@ class CommentsController < ApplicationController
   end
 
   def upvote
-    # if @comment.upvotable_by?(current_user)
-    if true
+    if @comment.upvotable_by?(current_user)
       @comment.upvote_by(current_user)
       User.increment_counter(:reputation, @user.id)
     else
@@ -75,8 +74,7 @@ class CommentsController < ApplicationController
   end
 
   def downvote
-    # if @comment.downvotable_by?(current_user)
-    if true
+    if @comment.downvotable_by?(current_user)
       @comment.downvote_by(current_user)
       User.decrement_counter(:reputation, @user.id)
     else
