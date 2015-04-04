@@ -11,12 +11,12 @@ ul
 - @posts.each do |post|
   .item
     .item__reputation
-      .upvote
+      .upvote.clickable
         = link_to upvote_post_path(post), method: :put do
           i> class="fa fa-level-up"
       .score
         = post.cached_votes_score
-      .downvote
+      .downvote.clickable
         = link_to downvote_post_path(post), method: :put do
           i> class="fa fa-level-down"
     .item__thumbnail
