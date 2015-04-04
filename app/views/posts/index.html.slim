@@ -27,14 +27,17 @@ ul
       ul.flat-list
         li.item__list
           i class="fa fa-clock-o"
-          =<> time_ago_in_words(post.created_at)
-          | ago
-        li.item__list
+          span.item__text
+            =<> time_ago_in_words(post.created_at)
+            | ago
+        li.item__list--center
           i class="fa fa-comment-o"
-          =<> post.comments_count
-          | comments
-        li.item__list
+          span.item__text
+            =<> post.comments_count
+            | comments
+        li.item__list--center
           i<> class="fa fa-twitter"
-          | share
+          span.item__text
+            | share
 br/
 = link_to 'New Post', new_post_path
